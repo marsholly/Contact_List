@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="main.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="style.css" media="screen" title="no title">
+  <title>Contact List</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <h1 class="text-center">Contact List
+        <button class="btn btn-xs btn-success" data-toggle="modal" data-target="#newContactModal"><span class="glyphicon glyphicon-plus"></span></button>
+      </h1>
+      <form class="form-inline text-center" id="searchForm">
+        <div class="form-group">
+          <input type="text" class="form-control" id="searchText" placeholder="name">
+        </div>
+        <button type="submit" class="btn btn-default">Search</button>
+        <button class='btn btn-warning' id="sort">Sort</button>
+      </form>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-xs-12">
+        <ul id="list"></ul>
+      </div>
+    </div>
+  </div>
+</body>
+
+  <!-- Add New Contact Modal -->
+  <div class="modal fade" id="newContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="addNewContact">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">New Contact</h4>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label class="control-label">Name:</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Phone Number:</label>
+                <input type="text" class="form-control" id="phoneNumber">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Address:</label>
+                <input type="text" class="form-control" id="newAddress">
+              </div>
+              <div class="form-group">
+                <label class="control-label">E-mail:</label>
+                <input type="text" class="form-control" id="email">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Photo:</label>
+                <input type="text" class="form-control" id="photo_url">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" >Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Contact list template -->
+  <li id="template" class="hidden">
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail text-center">
+        <img src="" height="150px" width="200px" class="img-circle newContactPhoto">
+        <div class="caption">
+          <h3 class="newContactName"></h3>
+          <h6 id="p">Phone Number: <span class="newContactPhone"></span></h6>
+          <h6 id="a">Address: <span class="newContactAddress"></span></h6>
+          <h6 id="e">E-mail: <span class="newContactEmail"></span></h6>
+          <p class="text-center">
+            <a class="btn btn-primary" role="button" id="edit" data-toggle="modal" data-target="#editContactModal">Edit</a>
+            <a class="btn btn-danger" role="button" id="delete">Delete</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </li>
+
+<!-- edit Contact -->
+  <div class="modal fade" id="editContactModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <form id="editContact">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="exampleModalLabel">Edit Contact</h4>
+          </div>
+          <div class="modal-body">
+              <div class="form-group">
+                <label class="control-label">Name:</label>
+                <input type="text" class="form-control" id="editName">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Phone Number:</label>
+                <input type="text" class="form-control" id="editPhoneNumber">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Address:</label>
+                <input type="text" class="form-control" id="editAddress">
+              </div>
+              <div class="form-group">
+                <label class="control-label">E-mail:</label>
+                <input type="text" class="form-control" id="editEmail">
+              </div>
+              <div class="form-group">
+                <label class="control-label">Photo:</label>
+                <input type="text" class="form-control" id="editPhoto_url">
+              </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary" >Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</html>
